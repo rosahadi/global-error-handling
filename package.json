@@ -1,0 +1,42 @@
+{
+  "name": "global-error-handling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rosahadi/global-error-handling.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rosahadi/global-error-handling/issues"
+  },
+  "homepage": "https://github.com/rosahadi/global-error-handling#readme",
+  "dependencies": {
+    "@prisma/client": "^6.10.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.0",
+    "express": "^4.19.2",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.7",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.10.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

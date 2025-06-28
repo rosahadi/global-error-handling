@@ -1,0 +1,68 @@
+
+## 1. SUCCESS CASES (To Setup Test Data)
+
+
+### Create first user (SUCCESS)
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "email": "user1@example.com",
+  "name": "user1"
+}
+
+## 2. PRISMA ERROR TESTING
+
+### P2002 - Unique Constraint Violation (Duplicate Email)
+### This will trigger the global error handler for duplicate emails
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "email": "user1@example.com",
+  "name": "Another user1"
+}
+
+### P2003 - Foreign Key Constraint Violation (Invalid User ID)
+### This will trigger the global error handler for invalid foreign key
+POST http://localhost:3000/api/users/999/posts
+Content-Type: application/json
+
+{
+  "title": "Post with Invalid User",
+  "content": "This should fail because user 999 doesn't exist"
+}
+
+### P2025 - Record Not Found (Delete Non-existent User)
+### This will trigger the global error handler for record not found
+DELETE http://localhost:3000/api/users/999
+
+## 3. VALIDATION ERRORS 
+
+### Missing required email field
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "name": "User Without Email"
+}
+
+### Missing required title field for post
+POST http://localhost:3000/api/users/1/posts
+Content-Type: application/json
+
+{
+  "content": "Post without title"
+}
+
+### 4. MALFORMED REQUEST ERRORS
+
+### Invalid JSON (will trigger Express JSON parser error)
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "email": "test@example.com"
+  "name": "Invalid JSON" // Missing comma
+}
+
